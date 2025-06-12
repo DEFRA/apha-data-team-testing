@@ -1,0 +1,8 @@
+pytest
+pytest-bdd
+pyodbc
+azure-identity
+pandas
+numpy
+oracledb
+openpyxl

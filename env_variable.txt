@@ -1,0 +1,1 @@
+$Env:AZURE_SQL_CONNECTIONSTRING = 'Driver={ODBC Driver 17 for SQL Server};Server=tcp:devsqldacinfsq1401.database.windows.net,1433;Database=devsqldacinfdbs1401;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=120'
