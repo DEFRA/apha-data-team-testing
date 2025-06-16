@@ -1,0 +1,2 @@
+CustomerID,defraCustomerID,defraTitle,defraInitials,defraFirstName,defraMiddleName,defraLastName,defraAddressTypeCode,defraAddressTypeCodeName,defraBuildingName,defraBuildingNumber,defraStreet,defraLocality,defraCounty,defraPostCode,defraInternationalPostalCode
+DF121623-13D5-4A22-B532-584F0562E4D8,78A02A09-24FC-4DA5-BA59-356F75919BF7,Mr,J.D.,John,David,Doe,Home,Residential,Building A,123,Main Street,Downtown,CountyX,AB12 3CD,INT-12345
