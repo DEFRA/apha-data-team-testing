@@ -28,6 +28,9 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
           - name: Run Test script
+            env:
+               SA_USER_NAME: ${{secrets.SA_USER_NAME}}
+               SA_USER_PWD: ${{secrets.SA_USER_PWD}}
             run: |
                 python .\src\sql_test.py
           # - name: Run tests with pyests

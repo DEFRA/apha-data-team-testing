@@ -28,8 +28,8 @@ def connect_to_db():
     else:
         SERVER = 'devsqldacinfsq1401.database.windows.net'
         DATABASE = 'devsqldacinfdbs1401'
-        USERNAME = 'USERNAME'
-        PASSWORD = 'PWD'
+        USERNAME = os.environ['SA_USER_NAME']
+        PASSWORD = os.environ['SA_USER_PWD']
 
         connectionString = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
     
