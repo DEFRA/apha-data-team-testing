@@ -15,15 +15,33 @@ SQL_QUERY = f"""
                 """
 
 def connect_to_db():
-    connection_string = os.environ["AZURE_SQL_CONNECTIONSTRING"]
+    if os.getenv('GITHUB_ACTION') is None:
+        connection_string = os.environ["AZURE_SQL_CONNECTIONSTRING"]
 
-    credential = identity.DefaultAzureCredential(exclude_interactive_browser_credential=False)
-    token_bytes = credential.get_token("https://database.windows.net/.default").token.encode("UTF-16-LE")
-    token_struct = struct.pack(f'<I{len(token_bytes)}s', len(token_bytes), token_bytes)
-    SQL_COPT_SS_ACCESS_TOKEN = 1256  # This connection option is defined by microsoft in msodbcsql.h
-    cnxn = pyodbc.connect(connection_string, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})
+        credential = identity.DefaultAzureCredential(exclude_interactive_browser_credential=False)
+        token_bytes = credential.get_token("https://database.windows.net/.default").token.encode("UTF-16-LE")
+        token_struct = struct.pack(f'<I{len(token_bytes)}s', len(token_bytes), token_bytes)
+        SQL_COPT_SS_ACCESS_TOKEN = 1256  # This connection option is defined by microsoft in msodbcsql.h
+        cnxn = pyodbc.connect(connection_string, attrs_before={SQL_COPT_SS_ACCESS_TOKEN: token_struct})
     
-    return cnxn
+        return cnxn
+    else:
+        server = "devsqldacinfsq1401.database.windows.net"
+        database = "devsqldacinfdbs1401"
+        username = os.environ["SA_USER_NAME"]
+        password = os.environ["SA_USER_PWD"]
+
+        connectionString = f"""DRIVER={{ODBC Driver 17 for SQL Server}};
+                               SERVER={server};
+                               DATABASE={database};
+                               UID={username};
+                               PWD={password}
+                            """
+    
+        cnxn = pyodbc.connect(connectionString)
+
+        return(cnxn)
+    
 
 
 def query_customer_details(cnxn, query):
