@@ -2,8 +2,11 @@ name: Testing SQL Queries with pytest
 
 on:
     push:
+    pull_request:
+      branches:
+      - main
     schedule:
-      - cron: 0 1 * * *
+      - cron: 0 1 * * 1-5
 
 jobs:
     Query-Tests:
