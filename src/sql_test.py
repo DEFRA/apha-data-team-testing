@@ -26,16 +26,21 @@ def connect_to_db():
     
         return cnxn
     else:
-        SERVER = 'devsqldacinfsq1401.database.windows.net'
-        DATABASE = 'devsqldacinfdbs1401'
-        USERNAME = os.environ['SA_USER_NAME']
-        PASSWORD = os.environ['SA_USER_PWD']
+        server = "devsqldacinfsq1401.database.windows.net"
+        database = "devsqldacinfdbs1401"
+        username = os.environ["SA_USER_NAME"]
+        password = os.environ["SA_USER_PWD"]
 
-        connectionString = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={SERVER};DATABASE={DATABASE};UID={USERNAME};PWD={PASSWORD}'
+        connectionString = f"""DRIVER={{ODBC Driver 17 for SQL Server}};
+                               SERVER={server};
+                               DATABASE={database};
+                               UID={username};
+                               PWD={password}
+                            """
     
-        # conn = pyodbc.connect(connectionString)
+        cnxn = pyodbc.connect(connectionString)
 
-        print(connectionString)
+        return(cnxn)
     
 
 

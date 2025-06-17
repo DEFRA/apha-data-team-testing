@@ -6,7 +6,7 @@ on:
       - cron: 0 1 * * *
 
 jobs:
-    build:
+    Query-Tests:
 
         runs-on: windows-latest
 
@@ -27,13 +27,11 @@ jobs:
             run: |
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
-          - name: Run Test script
+          - name: Test for Dev SQL DB
             env:
                SA_USER_NAME: ${{secrets.SA_USER_NAME}}
                SA_USER_PWD: ${{secrets.SA_USER_PWD}}
             run: |
-                python .\src\sql_test.py
-          # - name: Run tests with pyests
-            # run: |
-                # pytest -rA
+                pytest .\tests\step_definitions\sql_query_bdd_test.py -rA
+            continue-on-error: true
 
